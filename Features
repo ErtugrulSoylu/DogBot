@@ -21,3 +21,4 @@ What to add:
   -Can't search for songs in youtube
   -Add a volume command
   -Shouldn't download all the playlist, it should download next song only (i think more efficient)
+  -I should add a seek and forward command
