@@ -133,16 +133,19 @@ async def sqrt(ctx, num):
 
 @bot.command(name="play", aliases=["p", "ğ"])
 async def play(ctx, url):
-    user_channel = ctx.author.voice.channel
-    if not user_channel:
-        return await ctx.send('Gel şöyle boş bi odaya geçelim.')
-    if ctx.voice_client and (ctx.voice_client.channel != user_channel):
-        return await ctx.send('Başka biriyleyim!')
-    if user_channel and not ctx.voice_client:
-        await ctx.send('DogBot geliyor!')
-        await user_channel.connect()
-    song = Song(url, 'list=' in url, ctx.guild.id)
-    Q[ctx.guild.id].push(song.info)
+    try:
+        user_channel = ctx.author.voice.channel
+        if not user_channel:
+            return await ctx.send('Gel şöyle boş bi odaya geçelim.')
+        if ctx.voice_client and (ctx.voice_client.channel != user_channel):
+            return await ctx.send('Başka biriyleyim!')
+        if user_channel and not ctx.voice_client:
+            await ctx.send('DogBot geliyor!')
+            await user_channel.connect()
+        song = Song(url, 'list=' in url, ctx.guild.id)
+        Q[ctx.guild.id].push(song.info)
+    except:
+        return
 
 @bot.command(name="join", aliases=["j"]) 
 async def join(ctx):
