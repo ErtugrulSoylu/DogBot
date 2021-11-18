@@ -9,6 +9,7 @@ Commands:
   -join
   -leave
   -skip
+  -shuffle
 
 What can DogBot do:
   -Play a song from url
