@@ -94,6 +94,9 @@ class Queue:
         self.arr = []
         self.size = 0
 
+    def shuffle(self):
+        random.shuffle(self.arr)
+
     def play_current(self):
         self.skip_next_callback = False
         vc = get(bot.voice_clients, guild=bot.get_guild(self.id))
@@ -197,6 +200,15 @@ async def skip(ctx):
     try:
         if ctx.author.voice.channel == server.voice_client.channel:
             server.voice_client.stop()
+    except:
+        return
+
+@bot.command(name="shuffle")
+async def shuffle(ctx):
+    server = ctx.message.guild
+    try:
+        if ctx.author.voice.channel == server.voice_client.channel:
+            Q[ctx.guild.id].shuffle()
     except:
         return
 
